@@ -67,36 +67,25 @@ To interface the sensor to `AT89c51` microcontroller, we need two I/O pins. One 
                                       
 3. Sometimes, due to errors in the sensor functioning, the `8051 microcontroller` may go into an infinite loop. To solve that issue we generate a delay of 40 milliseconds after triggering the ultrasonic sensor.
  
-4. TIMER= Time taken by the signal to go forward + come back.
+4. `TIMER`= Time taken by the signal to go forward + come back.
 
 5. It measures the signal traces the whole distance twice. So, the time taken by the signal to travel the distance is:
 
-                                Time taken= TIMER0 value/2
+                                Time taken= TIMER0/2
 
 6. `Ultrasonic` pulses travels with the speed of sound 340.29 m/s = `34029 cm/s`
 
-7. Range of target= Velocity * Time = 34029 * TIMER0/2 =  `17015 * TIMER0`
+7. Range= Velocity * Time= 34029 * TIMER0/2=  `17015 * TIMER0`
                                                   
 8. At 12MHz, `TIMER0` gets incremented for 1microsecond.
 
-                     Range =    17015 centimeters/seconds  *  TIMER0 micro seconds
+                     Range =    17015 centimeters/seconds  *  TIMER0 microseconds
 
-                           =    17015 centimeters/seconds *  TIMER0 * (10^-6)  seconds                 
-                                     as            (1micro second=10^-6 seconds)
+                           =    17015 centimeters/seconds *  TIMER0 * (10^-6) seconds                 
                         
-                           =    17015 centimeters/seconds *  TIMER0 * (10^-6)  seconds  
-                         
-                              
-                           =    17015  *  TIMER0     centimeters 
-                                        (1000000)   
-                           
-                           =       TIMER0_______     centimeters 
-                                    1000000/ 17015  
+                           =    17015 centimeters/seconds *  TIMER0 * (10^-6) seconds  
 
-                           =       TIMER0_   centimeters 
-                                    58.771
-
-          Range of target  =  (TIMER/59)  centimeters 
+                     Range =  (TIMER/59)  centimeters 
                    
 This formula is used to calculate the range of the target easily.
 
