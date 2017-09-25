@@ -51,13 +51,13 @@ To interface the sensor to `AT89c51` microcontroller, we need two I/O pins. One 
 ### Algorithm
 1. Send a 10 micro second high pulse at `Trigger`: 
 
-                                      P3.5=0;
+                                      P3.5= 0;
                                       
-                                      P3.5=1;
+                                      P3.5= 1;
                                       
-                                      Delay(10 micro second);
+                                      Delay(10 microseconds);
                                       
-                                      P3.5=0;
+                                      P3.5= 0;
                                       
 2. Wait until the sensor transmits the eight 40KHz pulses and signal reflection. Initially the `Echo` pin is low. When the transmitter completes a pulse and the pin goes high, the `TIMER` starts counting. When input at `P3.2` goes low, `TIMER` holds count. Logic used to implement this is:
 
@@ -73,7 +73,7 @@ To interface the sensor to `AT89c51` microcontroller, we need two I/O pins. One 
 
                                 Time taken= TIMER0/2
 
-6. `Ultrasonic` pulses travels with the speed of sound 340.29 m/s = `34029 cm/s`
+6. `Ultrasonic` pulses travels with the speed of sound at 340.29 m/s= `34029 cm/s`
 
 7. Range= Velocity * Time
 
