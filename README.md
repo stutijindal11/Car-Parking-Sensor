@@ -83,13 +83,13 @@ To interface the sensor to `AT89c51` microcontroller, we need two I/O pins. One 
                                                   
 8. At 12MHz, `TIMER0` gets incremented for 1microsecond.
 
-                     Range =    17015 centimeters/seconds  *  TIMER0 microseconds
+                     Range =    17015 centimeters/seconds * TIMER0 microseconds
 
-                           =    17015 centimeters/seconds *  TIMER0 * (10^-6) seconds                 
+                           =    17015 centimeters/seconds * TIMER0 * (10^-6) seconds                 
                         
-                           =    17015 centimeters/seconds *  TIMER0 * (10^-6) seconds  
+                           =    17015 centimeters/seconds * TIMER0 * (10^-6) seconds  
 
-                     Range =  (TIMER/59)  centimeters 
+                     Range =    (TIMER/59)  centimeters 
                    
 This formula is used to calculate the range of the target easily.
 
