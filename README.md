@@ -13,18 +13,16 @@ The microcontroller accepts this signal, performs necessary processing and displ
 This distance is displayed on the LCD and if it is less than 20 centimetre, a buzzer is sound.
 
 
-### Features
-1. #### Student Facilities:
-* Students can upload their resume.
-* They can update their details on profile tab.
-* They can view company details such as company name, minimum cpga criteria for application, ctc, stipend etc.
-* They can view the company schedules, register for them and get notified incase of announcements. 
-* They can seek for placement procedure guidelines.
+### Design
+* Make "Trig" pin of the sensor high for 10 microseconds. This initiates a sensor cycle.
+* 8 x 40 kHz pulses will be sent from the transmitting transducer of the sensor, after which time the "Echo" pin on the sensor will go from low to high.
+* The 40 kHz sound wave will bounce off the nearest object and return to the sensor.
+* When the sensor detects the reflected sound wave, the Echo pin will go low again.
+* The distance between the sensor and the detected object can be calculated based on the length of time the Echo pin is high.
+* If no object is detected, the Echo pin will stay high for 38ms and then go low. 
 
-2. #### Admin Facilities:
-* Insert or update student details.
-* Admins can add companies and their details on the portal.
-
+### Block Diagram
+![1](https://user-images.githubusercontent.com/23147474/30789155-7e7a9570-a171-11e7-944a-6f9712aa4b9f.JPG)
 
 ### Database
 We used MySQL for database connectivity with a database named `Portal` containing the following tables:
