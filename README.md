@@ -45,7 +45,7 @@ To interface the sensor to `AT89c51` microcontroller, we need two I/O pins. One 
 * Declare `P3.2` as input.
 
 ### Circuit Diagram
-![2](https://user-images.githubusercontent.com/23147474/30789361-0873a662-a173-11e7-83fa-970c5779dca9.JPG)
+![2](https://user-images.githubusercontent.com/23147474/30789919-b22132f8-a176-11e7-8024-e70f8d746308.JPG)
 
 
 ### Algorithm
@@ -65,19 +65,19 @@ To interface the sensor to `AT89c51` microcontroller, we need two I/O pins. One 
                                       
                                       while(P3.2==1); 
                                       
-Sometimes, due to errors in the sensor functioning, the `8051 microcontroller` may go into an infinite loop. To solve that issue we generate a delay of 40 milliseconds after triggering the ultrasonic sensor.
+3. Sometimes, due to errors in the sensor functioning, the `8051 microcontroller` may go into an infinite loop. To solve that issue we generate a delay of 40 milliseconds after triggering the ultrasonic sensor.
  
-3. TIMER value = time taken by the signal to (go forward + come back)
+4. TIMER value = time taken by the signal to (go forward + come back)
 
-4. It measures the signal traces the whole distance twice. So, the time taken by the signal to travel the distance is:
+5. It measures the signal traces the whole distance twice. So, the time taken by the signal to travel the distance is:
 
                                 Time taken= TIMER0 value/2
 
-5. `Ultrasonic` pulses travels with the speed of sound 340.29 m/s = `34029 cm/s`
+6. `Ultrasonic` pulses travels with the speed of sound 340.29 m/s = `34029 cm/s`
 
-6. Range of target= velocity * time = 34029 * TIMER0/2 =  `17015 * TIMER0`
+7. Range of target= velocity * time = 34029 * TIMER0/2 =  `17015 * TIMER0`
                                                   
-7. At 12MHz, `TIMER0` gets incremented for 1microsecond.
+8. At 12MHz, `TIMER0` gets incremented for 1microsecond.
 
                      Range =    17015 centimeters/seconds  *  TIMER0 micro seconds
 
