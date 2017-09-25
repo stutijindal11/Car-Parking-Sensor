@@ -1,6 +1,6 @@
 # Car-Parking-Sensor
 
-Assembly Language 8051
+Assembly 8051
 
 ### About
 A simple ultrasonic range finder using `8051` microcontroller to measure distances up to 2.5 meters at an accuracy of 1
@@ -9,11 +9,11 @@ centimetre. `AT89c51` microcontroller and the ultrasonic transducer module `HC-S
 A sensor is mounted at the back of the car. It detects the distance by sending electromagnetic
 pulses through a transmitter, reflected by an obstacle. The sensor is connected to the HC-SR04 module. This module works on a 5V DC supply and the standby current is less than 2mA. It transmits an ultrasonic signal, picks up its echo, measures the time elapsed between the two events and outputs a waveform whose high time is modulated by the measured time which is proportional to the distance. 
 
-The microcontroller accepts this signal, performs necessary processing and displays the corresponding distance on the 16x2 LCD. 
-If this distance is less than 20 centimetre, a buzzer is sound.
+The microcontroller accepts this signal, performs necessary processing and displays the corresponding distance on the `16x2 LCD`. 
+If this distance is less than 20 centimetre, a `buzzer` is sound.
 
 ### Design
-* Make `TRIG` pin of the sensor high for 10 microseconds. This initiates a sensor cycle.
+* Make `Trigger` pin of the sensor high for 10 microseconds. This initiates a sensor cycle.
 * 8 x 40 kHz pulses will be sent from the transmitting transducer of the sensor.
 * The `Echo` pin on the sensor goes from low to high.
 * The 40 kHz sound wave bounces off the nearest object and returns to the sensor.
@@ -36,20 +36,20 @@ If this distance is less than 20 centimetre, a buzzer is sound.
 ![1](https://user-images.githubusercontent.com/23147474/30789155-7e7a9570-a171-11e7-944a-6f9712aa4b9f.JPG)
 
 ### Circuit Configuration
-To interface the sensor to AT89c51 microcontroller, we need two I/O pins. One is connected to P3.2 and other to P3.5
-* Connect the trigger pin of sensor to P3.5 of AT89c51.
-* Connect the echo pin of the sensor to P3.2 0f AT89c51.
-* Configure the TIMER of 8051 in mode 1.
-* When P3.2 is high, the TIMER starts counting.
-* When P3.2 goes low, TIMER0 holds it's count.
-* Declare P3.2 as input.
+To interface the sensor to `AT89c51` microcontroller, we need two I/O pins. One is connected to `P3.2` and other to `P3.5`.
+* Connect the `Trigger` pin of sensor to `P3.5` of `AT89c51`.
+* Connect the `Echo` pin of the sensor to `P3.2` of `AT89c51`.
+* Configure the `TIMER` of 8051 in mode 1.
+* When `P3.2` is high, the `TIMER` starts counting.
+* When `P3.2` goes low, `TIMER0` holds it's count.
+* Declare `P3.2` as input.
 
 ### Circuit Diagram
 ![2](https://user-images.githubusercontent.com/23147474/30789361-0873a662-a173-11e7-83fa-970c5779dca9.JPG)
 
 
 ### Algorithm
-1. Send a 10 micro second high pulse at trigger: 
+1. Send a 10 micro second high pulse at `Trigger`: 
 
                                       P3.5=0;
                                       
@@ -59,17 +59,17 @@ To interface the sensor to AT89c51 microcontroller, we need two I/O pins. One is
                                       
                                       P3.5=0;
                                       
-2. `WAIT` until the sensor transmits the eight 40KHz pulses and signal reflection. Initially the `ECHO` pin is low. When the transmitter completes a pulse and the pin goes high, the TIMER starts counting. When input at `P3.2` goes low, timer holds count. Logic used to implement 'WAIT' is:
+2. Wait until the sensor transmits the eight 40KHz pulses and signal reflection. Initially the `Echo` pin is low. When the transmitter completes a pulse and the pin goes high, the TIMER starts counting. When input at `P3.2` goes low, timer holds count. Logic used to implement this is:
 
                                       while(P3.2==0);
                                       
                                       while(P3.2==1); 
                                       
-Sometimes, due to errors in the sensor functioning, the 8051 microcontroller may go into an "INFINITE LOOP". To solve that issue we generate a delay of 40 milliseconds after triggering the ultrasonic sensor.
+Sometimes, due to errors in the sensor functioning, the 8051 microcontroller may go into an infinite loop. To solve that issue we generate a delay of 40 milliseconds after triggering the ultrasonic sensor.
  
 3. `TIMER value = time taken by the signal to (go forward + come back)`
-It measures the signal traces the whole distance twice. 
-So, the time taken by the signal to travel the distance is:
+
+It measures the signal traces the whole distance twice. So, the time taken by the signal to travel the distance is:
 
                                 `Time taken= TIMER0 value/2`
 
