@@ -18,7 +18,7 @@ If this distance is less than 20 centimetre, a `buzzer` is sound.
 * The `Echo` pin on the sensor goes from low to high.
 * The 40 kHz sound wave bounces off the nearest object and returns to the sensor.
 * When the sensor detects a reflected sound wave, the `Echo` pin goes to low again.
-* The distance between the sensor and the detected object can be calculated based on the length of time, the Echo pin is high.
+* The distance between the sensor and the detected object can be calculated based on the length of time, the `Echo` pin is high.
 * If no object is detected, the `Echo` pin will stay high for 38ms and then go low. 
 
 ### Components Used
