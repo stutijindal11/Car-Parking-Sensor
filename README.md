@@ -75,7 +75,11 @@ To interface the sensor to `AT89c51` microcontroller, we need two I/O pins. One 
 
 6. `Ultrasonic` pulses travels with the speed of sound 340.29 m/s = `34029 cm/s`
 
-7. Range= Velocity * Time= 34029 * TIMER0/2=  `17015 * TIMER0`
+7. Range= Velocity * Time
+
+                     Range =    34029 * TIMER0/2
+                     
+                           =    17015 * TIMER0
                                                   
 8. At 12MHz, `TIMER0` gets incremented for 1microsecond.
 
