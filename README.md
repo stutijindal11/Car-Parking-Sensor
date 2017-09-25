@@ -59,13 +59,13 @@ To interface the sensor to `AT89c51` microcontroller, we need two I/O pins. One 
                                       
                                       P3.5=0;
                                       
-2. Wait until the sensor transmits the eight 40KHz pulses and signal reflection. Initially the `Echo` pin is low. When the transmitter completes a pulse and the pin goes high, the TIMER starts counting. When input at `P3.2` goes low, timer holds count. Logic used to implement this is:
+2. Wait until the sensor transmits the eight 40KHz pulses and signal reflection. Initially the `Echo` pin is low. When the transmitter completes a pulse and the pin goes high, the `TIMER` starts counting. When input at `P3.2` goes low, `TIMER` holds count. Logic used to implement this is:
 
                                       while(P3.2==0);
                                       
                                       while(P3.2==1); 
                                       
-Sometimes, due to errors in the sensor functioning, the 8051 microcontroller may go into an infinite loop. To solve that issue we generate a delay of 40 milliseconds after triggering the ultrasonic sensor.
+Sometimes, due to errors in the sensor functioning, the `8051 microcontroller` may go into an infinite loop. To solve that issue we generate a delay of 40 milliseconds after triggering the ultrasonic sensor.
  
 3. `TIMER value = time taken by the signal to (go forward + come back)`
 
